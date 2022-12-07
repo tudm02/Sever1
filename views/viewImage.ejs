@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <% var link = data.linkOld.toString().slice(6)%>
+  <img src="<%=link%>"/>
+  <p>id <%=data._id%></p>
+  <p>title <%=data.title%></p>
+  <p>messeger <%=data.messeger%></p>
+  <p>link <%=data.linkOld%></p>
+  </body>
+</html>

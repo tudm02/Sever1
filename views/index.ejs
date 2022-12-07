@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<h1><%= title %></h1>
+<form action="/create" method="post" enctype="multipart/form-data">
+  <input name="title" placeholder="Tiêu Đề">
+  <input name="messeger" placeholder="Mô Tả">
+  <input name="linkOld" type="file" accept="image/png">
+  <button type="submit">send</button>
+</form>
+<button onclick="fetch(window.location.href+'api')
+  .then(response => response.json())
+  .then(json => console.log(json))">get Url Json</button>
+
+
+<%
+for (var i = 0; i < data.length; i++) {
+  var linkOld = data[i].linkOld.toString().slice(6);
+%>
+<div style="width: 500px;height: 700px;border-radius: 12px;border: 2px solid darkgray;align-content: flex-end;margin-bottom: 22px">
+  <img style="width: 500px;height: 500px;border-radius: 12px" src="<%=linkOld%>">
+  <p style="font-size: 12px;color: #484848"><%=data[i].id%></p>
+  <p style="font-size: 22px;color: tomato"><%=data[i].title%></p>
+  <form method="post" action="/view" enctype="application/x-www-form-urlencoded">
+
+    <a name="_id" href="/view/<%=data[i]._id%>">View</a>
+  </form>
+  <form method="post" action="/edit" enctype="application/x-www-form-urlencoded">
+    <button>Edit</button>
+  </form>
+  <a name="id" href="/delete/<%=data[i]._id%>">delete</a>
+</div>
+<%
+}
+%>
+<!--    phan trang-->
+<%
+var tab =0;
+for (var i = 0; i < data1.length; i++) {
+
+if (i%3==0){
+  tab++;
+%>
+<a name="page" style="border-radius: 6px;border: 2px solid darkgray;padding: 6px;margin-left: 22px;color: darkgray;text-decoration: none" href="/page=<%=tab%>"><%=tab%></a>
+<%
+}
+}
+%>
+</body>
+</html>
